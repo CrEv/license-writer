@@ -8,11 +8,31 @@ licensefile = "license.txt"
 license = IO.readlines(licensefile)
 
 comments = Hash[
-	"apps/**/*.rb"       => Hash["start" => "# ",   "end" => "",    "skip" => "oldlicense.txt"],
-	"apps/**/*.sass"     => Hash["start" => "// ",  "end" => "",    "skip" => nil],
-	"apps/**/*.js"       => Hash["start" => "// ",  "end" => "",    "skip" => nil],
-	"apps/**/*.haml"     => Hash["start" => "-# ",  "end" => "",    "skip" => nil],
-	"apps/**/*.mustache" => Hash["start" => "{{# ", "end" => " }}", "skip" => nil]
+	"apps/**/*.rb" => Hash[
+		"start" => "# ",
+		"end" => "",
+		"skip" => "oldlicense.txt"
+	],
+	"apps/**/*.sass" => Hash[
+		"start" => "// ",
+		"end" => "",
+		"skip" => nil
+	],
+	"apps/**/*.js" => Hash[
+		"start" => "// ",
+		"end" => "",
+		"skip" => nil
+		],
+	"apps/**/*.haml" => Hash[
+		"start" => "-# ",
+		"end" => "",
+		"skip" => nil
+		],
+	"apps/**/*.mustache" => Hash[
+		"start" => "{{# ",
+		"end" => " }}",
+		"skip" => nil
+	]
 ]
 
 comments.each do |glob, comment|
