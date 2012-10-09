@@ -9,9 +9,7 @@ license = IO.readlines(licensefile)
 
 comments = Hash[
 	"apps/**/*.rb"       => Hash["start" => "# ",   "end" => "",    "skip" => "oldlicense.txt"],
-	"apps/**/*.coffee"   => Hash["start" => "# ",   "end" => "",    "skip" => nil],
 	"apps/**/*.sass"     => Hash["start" => "// ",  "end" => "",    "skip" => nil],
-	"apps/**/*.scss"     => Hash["start" => "// ",  "end" => "",    "skip" => nil],
 	"apps/**/*.js"       => Hash["start" => "// ",  "end" => "",    "skip" => nil],
 	"apps/**/*.haml"     => Hash["start" => "-# ",  "end" => "",    "skip" => nil],
 	"apps/**/*.mustache" => Hash["start" => "{{# ", "end" => " }}", "skip" => nil]
