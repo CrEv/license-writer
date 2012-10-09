@@ -18,13 +18,14 @@ comments = Hash[
 ]
 
 comments.each do |glob, comment|
+	puts("")
 	puts(" - check #{glob}")
 
 	oldlicense = []
 	oldlicense = IO.readlines(comment["skip"]) unless comment["skip"] == nil
 
 	Dir.glob(glob) do |file|
-		print(file.ljust(70))
+		print(file.ljust(90))
 		File.open("#{file}_tmp", "w") do |f|
 			fileContent = IO.readlines(file)
 			print(".")
@@ -48,6 +49,8 @@ comments.each do |glob, comment|
 			f.write("\n")
 			if skip
 				print("X")
+			else
+				print(".")
 			end
 			until i > fileContent.length
 				f.write(fileContent[i])
