@@ -69,9 +69,11 @@ comments.each do |glob, comment|
 				i += 1
 			end
 
+			f.write("#{comment['before']}\n") if comment['before'] != ''
 			license.each do |line|
 				f.write("#{comment['start']}#{line.chop}#{comment['end']}\n")
 			end
+			f.write("#{comment['after']}\n") if comment['after'] != ''
 			print(".")
 			f.write("\n")
 			f.write("\n")
