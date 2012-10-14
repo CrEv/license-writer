@@ -10,35 +10,35 @@ license = IO.readlines(licensefile)
 comments = Hash[
 	"apps/**/*.rb" => Hash[
 		"before" => "",
-		"start" => "# ",
+		"start" => "#",
 		"end" => "",
 		"after" => "",
 		"skip" => "oldlicense.txt"
 	],
 	"apps/**/*.sass" => Hash[
 		"before" => "",
-		"start" => "// ",
+		"start" => "//",
 		"end" => "",
 		"after" => "",
 		"skip" => nil
 	],
 	"apps/**/*.js" => Hash[
 		"before" => "/*",
-		"start" => " * ",
+		"start" => " *",
 		"end" => "",
 		"after" => " */",
 		"skip" => nil
 		],
 	"apps/**/*.haml" => Hash[
 		"before" => "",
-		"start" => "-# ",
+		"start" => "-#",
 		"end" => "",
 		"after" => "",
 		"skip" => nil
 		],
 	"apps/**/*.mustache" => Hash[
 		"before" => "",
-		"start" => "{{# ",
+		"start" => "{{#",
 		"end" => " }}",
 		"after"=> "",
 		"skip" => nil
@@ -71,7 +71,7 @@ comments.each do |glob, comment|
 
 			f.write("#{comment['before']}\n") if comment['before'] != ''
 			license.each do |line|
-				f.write("#{comment['start']}#{line.chop}#{comment['end']}\n")
+				f.write("#{comment['start']} #{line.chop}#{comment['end']}\n")
 			end
 			f.write("#{comment['after']}\n") if comment['after'] != ''
 			print(".")
