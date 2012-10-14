@@ -56,18 +56,36 @@ comments.each do |glob, comment|
 		print(file.ljust(90))
 		File.open("#{file}_tmp", "w") do |f|
 			fileContent = IO.readlines(file)
+			offset = 0
 			print(".")
 
+			if fileContent[offset][0, 3] == "#!/"
+				f.write fileContent[offset]
+				offset += 1
+			end
+			prefixidx = comment['start'].length + 4
+			if fileContent[offset][0, prefixidx] == "#{comment['start']} -*-"
+				f.write fileContent[offset]
+				offset += 1
+			end
+			if fileContent[offset][0, prefixidx] == "#{comment['start']} vi:"
+				f.write fileContent[offset]
+				offset += 1
+			end
+			f.write "\n" if offset > 0
+
 			skip = oldlicense.length > 0
-			i = 0
+			i = offset
 			oldlicense.each do |line|
 				if line != fileContent[i]
 					skip = false
-					i = 0
+					i = offset
 					break
 				end
 				i += 1
 			end
+
+			offset = i
 
 			f.write("#{comment['before']}\n") if comment['before'] != ''
 			license.each do |line|
@@ -82,9 +100,9 @@ comments.each do |glob, comment|
 			else
 				print(".")
 			end
-			until i > fileContent.length
-				f.write(fileContent[i])
-				i += 1
+			until offset > fileContent.length
+				f.write(fileContent[offset])
+				offset += 1
 			end
 			print(".")
 		end
